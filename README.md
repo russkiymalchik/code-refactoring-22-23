@@ -43,6 +43,14 @@ function deactivateButton(button, spinner) {
 #### 5. Lack of Error Handling
 The code doesn't handle server errors very well proved by little to no error handling method to provide better understanding for clients.
 
+possible error handling enhancement :
+```
+catch (error) {
+			console.error(error);
+			triggerToast(error.message);
+		}
+```
+
 #### 6. Long Functions
 ```
 document.addEventListener('DOMContentLoaded', function () {
