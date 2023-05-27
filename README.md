@@ -145,3 +145,24 @@ document.addEventListener('DOMContentLoaded', function () {
 	}
 });
 ```
+
+#### 7. Modularisation
+```
+class Unauthorized extends Error {
+	constructor(message) {
+		super(message);
+		this.name = 'Unauthorized';
+	}
+}
+```
+```
+function triggerToast(message) {
+		const toast = document.getElementById('liveToast');
+		const trigger = bootstrap.Toast.getOrCreateInstance(toast);
+		toast.querySelector('.toast-body').innerHTML = message;
+		trigger.show();
+		setTimeout(() => {
+			trigger.hide();
+		}, 1500);
+	}
+```
