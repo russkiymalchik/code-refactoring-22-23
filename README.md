@@ -6,16 +6,24 @@ Wiryawan Khairi <br />
 ## Lab 1 Laboratory (Code Analysis)
 References : Delivery Website Final > js > login.js
 #### 1. Hardcoded URL
+To put it simply, "hard coded test values" are specific values that are used in setting up a test, as well as during the test itself and in verifying the results. These values are not assigned to a named constant or variable and are typically scalar values or value objects.
+<br />
+When test data is hard coded, a common issue is that the data can be interrelated or dependent on one another, leading to potential problems or errors.
+
 ```
 const url = new URL('https://food-delivery.kreosoft.ru/api/account/login');
 const header = new Headers();
 header.append('Content-Type', 'application/json');
 ```
 #### 2. Redundant Check
+This line of code redirects the user to the menu page if they already have a token saved in localstorage. However, the check for the token is redundant because if the token is not present in localStorage, localStorage.getItem('token') will return null which somehow false.
 ```
 localStorage.getItem('token') && (window.location.href = 'menu.html');
 ```
 #### 3. Inconsistent Variable Naming
+This flaw/smell appear due to variable that may similar to another variable which resulted confusion and hard to maintain in the future.
+<br />
+Names should speak language of business(Mattas Sunny, 2020)
 ```
 const header = new Headers();
 header.append('Content-Type', 'application/json');
@@ -25,6 +33,9 @@ headers.append('Content-Type', 'application/json');
 headers.append('Authorization', `Bearer ${data.token}`);
 ```
 #### 4. Duplicate Code
+Code duplication refers to the repetition of an algorithm or data in two or more locations.
+<br />
+in this code, we may find the very exact logic of 2 function that seem very redundant. we may simplify it for a better understanding and more simple and easy-to-grasp kind of code.
 ```
 activateButton(button, spinner);
 
@@ -41,8 +52,8 @@ function deactivateButton(button, spinner) {
 }
 ```
 #### 5. Lack of Error Handling
-The code doesn't handle server errors very well proved by little to no error handling method to provide better understanding for clients.
-
+The code doesn't handle server errors very well proved by little to no error handling method to provide better understanding for clients. It will better if it has a higher level of error handling to give a better understand to the developer or the future clients about trouble that they are facing.
+<br />
 possible error handling enhancement :
 ```
 catch (error) {
@@ -51,7 +62,8 @@ catch (error) {
 		}
 ```
 
-#### 6. Long Functions
+#### 6. Long Method
+This flaw is appeared to a very crowded function that increase the complexity of its method/function. A good general guideline is to limit a single method to no more than one-half to one full screen height, depending on the resolution and font size being used (Eames Joe, 2020)
 ```
 document.addEventListener('DOMContentLoaded', function () {
 	const bootstrap = window.bootstrap;
@@ -146,7 +158,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 ```
 
-#### 7. Modularisation
+#### 7. Modularisation smells
+This smell arises when data and/or methods that ideally should have been localized into a single abstraction are separated and spread across multiple abstractions. It is like we rewrite a book as a one long story without any breaks (Suryanarayana & Samarthyam, 2015).
+<br />
+For this specific part that I quote, it is not necessary, but the code will be better if it is created under the principle of modularisation.
 ```
 class Unauthorized extends Error {
 	constructor(message) {
