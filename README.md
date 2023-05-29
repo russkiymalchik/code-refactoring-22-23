@@ -3,8 +3,18 @@ Wiryawan Khairi <br />
 Вирьяван Хайри <br />
 972006 <br />
 
+
+
+
+
+
 ## Lab 1 Laboratory (Code Analysis)
 References : Delivery Website Final > js > login.js
+
+If I asked "Why could this flaw appear?: I probably would say because I generally more task-goal-oriented. so I did what I know without any consideration on the beauty of the code
+
+
+
 #### 1. Hardcoded URL
 To put it simply, "hard coded test values" are specific values that are used in setting up a test, as well as during the test itself and in verifying the results. These values are not assigned to a named constant or variable and are typically scalar values or value objects.
 <br />
