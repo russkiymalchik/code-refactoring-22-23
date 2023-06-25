@@ -7,29 +7,59 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Food implements Serializable
-{
-    int itemno;
-    int quantity;   
-    float price;
-    
-    Food(int itemno,int quantity)
-    {
-        this.itemno=itemno;
-        this.quantity=quantity;
-        switch(itemno)
-        {
-            case 1:price=quantity*50;
+class Food implements Serializable {
+    FoodItem foodItem;
+
+    Food(int itemNo, int quantity) {
+        this.foodItem = new FoodItem(itemNo, quantity);
+    }
+}
+
+class FoodItem {
+    private int itemNo;
+    private int quantity;
+    private float price;
+
+    FoodItem(int itemNo, int quantity) {
+        this.itemNo = itemNo;
+        this.quantity = quantity;
+        calculatePrice();
+    }
+
+    private void calculatePrice() {
+        switch (itemNo) {
+            case 1:
+                price = quantity * 50;
                 break;
-            case 2:price=quantity*60;
+            case 2:
+                price = quantity * 60;
                 break;
-            case 3:price=quantity*70;
+            case 3:
+                price = quantity * 70;
                 break;
-            case 4:price=quantity*30;
+            case 4:
+                price = quantity * 30;
+                break;
+            default:
+                price = 0; // Handle unknown item numbers
                 break;
         }
     }
+
+    public float getPrice() {
+        return price;
+    }
+    
+    public float getquantity() {
+        return quantity;
+    }
+    
+    public int getitemNo() {
+        return itemNo;
+    }
 }
+
+
 class Singleroom implements Serializable
 {
     String name;
@@ -303,9 +333,11 @@ class Hotel
                     System.out.println("-------------------------");
                     for(Food obb:hotel_ob.luxury_doublerrom[rn].food)
                     {
-                        amount+=obb.price;
+                        amount+=obb.foodItem.getPrice();
+                        int itemNo = obb.foodItem.getitemNo();
+                        float adjustedPrice = obb.foodItem.getPrice() - 1.0f;
                         String format = "%-10s%-10s%-10s%n";
-                        System.out.printf(format,list[obb.itemno-1],obb.quantity,obb.price );
+                        System.out.printf(format, list[itemNo - 1], obb.foodItem.getquantity(), adjustedPrice);
                     }
                     
                 break;
@@ -317,9 +349,11 @@ class Hotel
                     System.out.println("-------------------------");
                     for(Food obb:hotel_ob.deluxe_doublerrom[rn].food)
                     {
-                        amount+=obb.price;
+                        amount+=obb.foodItem.getPrice();
+                        int itemNo = obb.foodItem.getitemNo();
+                        float adjustedPrice = obb.foodItem.getPrice() - 1.0f;
                         String format = "%-10s%-10s%-10s%n";
-                        System.out.printf(format,list[obb.itemno-1],obb.quantity,obb.price );
+                        System.out.printf(format,list[itemNo-1],obb.foodItem.getquantity(),adjustedPrice );
                     }
                 break;
             case 3:amount+=2200;
@@ -330,9 +364,11 @@ class Hotel
                     System.out.println("-------------------------");
                     for(Food obb:hotel_ob.luxury_singleerrom[rn].food)
                     {
-                        amount+=obb.price;
+                    	amount+=obb.foodItem.getPrice();
+                        int itemNo = obb.foodItem.getitemNo();
+                        float adjustedPrice = obb.foodItem.getPrice() - 1.0f;
                         String format = "%-10s%-10s%-10s%n";
-                        System.out.printf(format,list[obb.itemno-1],obb.quantity,obb.price );
+                        System.out.printf(format,list[itemNo-1],obb.foodItem.getquantity(),adjustedPrice );
                     }
                 break;
             case 4:amount+=1200;
@@ -343,9 +379,11 @@ class Hotel
                     System.out.println("-------------------------");
                     for(Food obb: hotel_ob.deluxe_singleerrom[rn].food)
                     {
-                        amount+=obb.price;
+                    	amount+=obb.foodItem.getPrice();
+                        int itemNo = obb.foodItem.getitemNo();
+                        float adjustedPrice = obb.foodItem.getPrice() - 1.0f;
                         String format = "%-10s%-10s%-10s%n";
-                        System.out.printf(format,list[obb.itemno-1],obb.quantity,obb.price );
+                        System.out.printf(format,list[itemNo-1],obb.foodItem.getquantity(),adjustedPrice );
                     }
                 break;
             default:
