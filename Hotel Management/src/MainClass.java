@@ -27,33 +27,32 @@ class FoodItem {
     }
 
     private void calculatePrice() {
+        price = calculateItemPrice(itemNo, quantity);
+    }
+
+    private float calculateItemPrice(int itemNo, int quantity) {
         switch (itemNo) {
             case 1:
-                price = quantity * 50;
-                break;
+                return quantity * 50;
             case 2:
-                price = quantity * 60;
-                break;
+                return quantity * 60;
             case 3:
-                price = quantity * 70;
-                break;
+                return quantity * 70;
             case 4:
-                price = quantity * 30;
-                break;
+                return quantity * 30;
             default:
-                price = 0; // Handle unknown item numbers
-                break;
+                return 0; // Handle unknown item numbers
         }
     }
 
     public float getPrice() {
         return price;
     }
-    
+
     public float getquantity() {
         return quantity;
     }
-    
+
     public int getitemNo() {
         return itemNo;
     }
