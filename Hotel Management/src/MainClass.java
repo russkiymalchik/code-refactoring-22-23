@@ -536,10 +536,10 @@ class Hotel
 }
 
 
-class write implements Runnable
+class Write implements Runnable
 {
     holder hotel_ob;
-    write(holder hotel_ob)
+    Write(holder hotel_ob)
     {
         this.hotel_ob=hotel_ob;
     }
@@ -641,7 +641,7 @@ public static void main(String[] args){
             
         }while(wish=='y'||wish=='Y');    
         
-        Thread t=new Thread(new write(Hotel.hotel_ob));
+        Thread t=new Thread(new Write(Hotel.hotel_ob));
         t.start();
         }        
             catch(Exception e)
